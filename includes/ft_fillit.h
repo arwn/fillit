@@ -6,7 +6,7 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/12 15:49:55 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/12 15:57:34 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ typedef struct	s_point
 
 typedef struct	s_tetromino
 {
-	char		shape;
-	t_etromino	*next;
+	char				shape;
+	struct s_tetromino	*next;
 }				t_etromino;
 
 /*
