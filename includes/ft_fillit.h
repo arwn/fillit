@@ -6,7 +6,7 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/12 15:57:34 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/12 16:03:19 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,8 @@ typedef struct	s_tetromino
 int				verify_piece(char **str);
 int				verify_block(char *str);
 int				verify_adjacent(char **piece, int x, int y);
+/*
+** ******  file  ******
+*/
 
 #endif
