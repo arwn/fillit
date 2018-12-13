@@ -1,5 +1,5 @@
 CC=clang
-GFLAGS=-Werror -Wextra -Wall -I libft/includes -I includes
+GFLAGS=-Werror -Wextra -Wall -Weverything -I libft/includes -I includes
 LFLAGS=-L libft/ -lft
 NAME=fillit
 SRC=main.c verify.c

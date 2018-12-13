@@ -6,7 +6,7 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 16:01:30 by awindham          #+#    #+#             */
-/*   Updated: 2018/12/12 16:24:52 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/13 11:20:43 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 /*
 ** function reads the file into memory to be passed to the piece generator
-** the file should never be larger than MAX_FILE_SIZE because each piece is a 5x4
-** with a newline after. ((5 * 4) * 26) + 25 newlines == 545
+** the file should never be larger than MAX_FILE_SIZE because each piece is a
+** 5x4 with a newline after. ((5 * 4) * 26) + 25 newlines == 545
 */
 char		*file_consume(char *path)
 {
@@ -41,4 +41,21 @@ char		*file_consume(char *path)
 			read(fd, 0, MAX_FILE_SIZE))
 		return ("error: file too big");
 	return (ret);
+}
+
+/*
+** Creates linked list containing each tetromino from a valid tetromino file.
+** You multiply iter by 21 because each block takes 20 chars + an empty nl.
+*/
+t_etromino	*spawn_pieces(char *file)
+{
+	char	*piece;
+	int		iter;
+
+	iter = 0;
+	while (*piece)
+	{
+		piece = file + iter * 21;
+		
+	}
 }
