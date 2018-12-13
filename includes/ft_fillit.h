@@ -6,7 +6,7 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/12 16:03:19 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/12 16:20:41 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ int				verify_adjacent(char **piece, int x, int y);
 /*
 ** ******  file  ******
 */
+char	*file_consume(char *path);
 
 #endif
