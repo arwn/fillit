@@ -21,8 +21,7 @@ typedef struct	s_point
 
 typedef struct	s_tetromino
 {
-	char				shape;
-	int					rotation;
+	char				**piece;
 	struct s_tetromino	*next;
 }				t_etromino;
 
