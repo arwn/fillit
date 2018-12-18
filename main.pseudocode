@@ -1,0 +1,16 @@
+main
+	open file;
+	while (read(fd, buf, 21) > 20)
+		check piece is valid
+		add piece to list
+
+	create min sized map
+
+	while pieces in list
+		test if x,y is valid location
+		if yes
+			go to next piece
+		else no
+			test x+1,y && x,y+1
+
+	print map
