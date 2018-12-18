@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlen.c                                        :+:      :+:    :+:   */
+/*   ft_countwords.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/02 15:22:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/02 15:23:20 by zfaria           ###   ########.fr       */
+/*   Created: 2018/12/01 15:26:01 by awindham          #+#    #+#             */
+/*   Updated: 2018/12/02 17:12:29 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+/*
+** this is a comment
+*/
 
-int		ft_lstlen(t_list *lst)
+int		ft_countwords(char const *str, char c)
 {
 	int count;
+	int	i;
 
+	i = 0;
 	count = 0;
-	while (lst)
+	while (str[i])
 	{
-		lst = lst->next;
-		count++;
+		while (str[i] == c)
+			i++;
+		if (str[i] != c && str[i] != '\0')
+			count++;
+		while (str[i] != c && str[i] != '\0')
+			i++;
 	}
 	return (count);
 }
