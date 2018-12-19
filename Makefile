@@ -2,7 +2,7 @@ CC=clang
 GFLAGS=-Werror -Wextra -Wall -Weverything -I libft/includes -I includes
 LFLAGS=-L libft/ -lft
 NAME=fillit
-SRC=main.c verify.c
+SRC=main.c verify.c print_map.c
 _SRC=$(SRC:%=src/%)
 
 _OBJ=$(SRC:%.c=%.o)
@@ -15,6 +15,7 @@ VPATH = src obj libft/includes includes src/str
 $(NAME): $(_OBJ)
 	@make -C libft
 	@$(CC) -g -o $(NAME) $(OBJ) $(LFLAGS)
+	@echo done
 
 all: $(NAME)
 
