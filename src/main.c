@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:57 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/19 10:18:28 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/19 11:33:41 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	die(int type)
 int			main(int argc, char **argv)
 {
 	int			fd;
-	char		buf[21];
+	char		buf[22];
 	t_etromino	*pieces;
 	char		**piece_map;
 
@@ -44,18 +44,16 @@ int			main(int argc, char **argv)
 	if (read(fd, buf, 0) < 0)
 		die(Read);
 	pieces = 0;
-	while (read(fd, buf, 20))
+	while (read(fd, buf, 21))
 	{
-		buf[20] = '\0';
-		piece_map = verify_is_valid_piece(buf);
+		buf[21] = '\0';
+		piece_map = verify_tetrimino(buf);
 		if (!piece_map)
 			die(Invalid);
 		if (pieces == 0)
 			pieces = list_new(piece_map);
 		else
 			list_append(pieces, piece_map);
-		if (read(fd, buf, 1) == 0)
-			break ;
 	}
 
 	/*			bullshit			*/

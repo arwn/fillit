@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:45:38 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/19 11:23:25 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/19 11:34:14 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,51 @@
 #include <ft_fillit.h>
 #include <string.h>
 
-char	**verify_is_valid_piece(char *str)
+static int	verify_block(char *str)
 {
-	char **map;
+	int hash;
+	int dot;
+	int nl;
+	int i;
 
-	map = NULL;
-	if (verify_block(str))
+	hash = 0;
+	dot = 0;
+	nl = 0;
+	i = 0;
+	while (i < 20)
 	{
-		map = ft_strsplit(str, '\n');
-		if (verify_piece(map))
-			return (map);
+		if (str[i] == '\n')
+			nl++;
+		if (str[i] == '.')
+			dot++;
+		if (str[i]== '#')
+			hash++;
+		i++;
 	}
-	ft_strdel(map);
-	return (NULL);
+	return (hash == 4 && dot == 12 && nl == 4);
 }
 
-int		verify_piece(char **piece)
+static int	verify_adjacent(char **piece, int x, int y)
+{
+	int valid;
+
+	valid = 0;
+	if (y > 0)
+		if (piece[y - 1][x] == '#')
+			valid++;
+	if (y < 3)
+		if (piece[y + 1][x] == '#')
+			valid++;
+	if (x > 0)
+		if (piece[y][x - 1] == '#')
+			valid++;
+	if (x < 3)
+		if (piece[y][x + 1] == '#')
+			valid++;
+	return (valid);
+}
+
+static int	verify_piece(char **piece)
 {
 	int x;
 	int y;
@@ -54,44 +83,17 @@ int		verify_piece(char **piece)
 	return (valid > 5);
 }
 
-int		verify_block(char *str)
+char		**verify_tetrimino(char *str)
 {
-	int hash;
-	int dot;
-	int nl;
+	char **map;
 
-	hash = 0;
-	dot = 0;
-	nl = 0;
-	while (*str)
+	map = NULL;
+	if (verify_block(str))
 	{
-		if (*str == '\n')
-			nl++;
-		if (*str == '.')
-			dot++;
-		if (*str == '#')
-			hash++;
-		str++;
+		map = ft_strsplit(str, '\n');
+		if (verify_piece(map))
+			return (map);
 	}
-	return (hash == 4 && dot == 12 && nl == 4);
-}
-
-int		verify_adjacent(char **piece, int x, int y)
-{
-	int valid;
-
-	valid = 0;
-	if (y > 0)
-		if (piece[y - 1][x] == '#')
-			valid++;
-	if (y < 3)
-		if (piece[y + 1][x] == '#')
-			valid++;
-	if (x > 0)
-		if (piece[y][x - 1] == '#')
-			valid++;
-	if (x < 3)
-		if (piece[y][x + 1] == '#')
-			valid++;
-	return (valid);
+	ft_strdel(map);
+	return (NULL);
 }
