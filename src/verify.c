@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:45:38 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/19 10:15:59 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/19 10:30:28 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 char	**verify_is_valid_piece(char *str)
 {
-	char **map = NULL;
+	char **map;
 
+	**map = NULL;
 	if (verify_block(str))
 	{
 		map = ft_strsplit(str, '\n');

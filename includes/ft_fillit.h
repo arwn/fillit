@@ -6,14 +6,20 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/19 10:12:04 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/19 10:30:11 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_FILLIT_H
 # define FT_FILLIT_H
 
-enum usage_types{Argc,Open,Read,Invalid};
+enum			e_usage_types
+{
+	Argc,
+	Open,
+	Read,
+	Invalid
+};
 
 typedef struct	s_point
 {
@@ -21,10 +27,10 @@ typedef struct	s_point
 	int y;
 }				t_point;
 
-typedef struct	s_tetromino
+typedef struct	s_t
 {
-	char				**data;
-	struct s_tetromino	*next;
+	char		**data;
+	struct s_t	*next;
 }				t_etromino;
 
 /*
@@ -42,7 +48,7 @@ int				print_map(char **map);
 /*
 ** ****** list ********
 */
-t_etromino	*list_new(char **content);
-void		list_append(t_etromino *list, char **content);
+t_etromino		*list_new(char **content);
+void			list_append(t_etromino *list, char **content);
 
 #endif
