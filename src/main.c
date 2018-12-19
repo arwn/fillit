@@ -6,7 +6,7 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:57 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/18 16:47:22 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/18 16:52:31 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,29 @@ int			main(int argc, char **argv)
 		return(die(Argc));
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		return(die(Open));
-	pieces = 0;
-	while (20 < read(fd, buf, 21))
-	{
-		buf[21] = '\0';
-		pieces = list_new(buf);
-		for (int i = 0; pieces->data[i]; i++)
-			puts(pieces->data[i]);
-	}
-	puts(pieces->data[0]);
-	close(fd);
 
-/*			bullshit			*/
+
+
+	/*			bullshit			*/
+	#ifdef T_PRINT_PIECES
+		pieces = 0;
+		while (20 < read(fd, buf, 21))
+		{
+			buf[21] = '\0';
+			pieces = list_new(buf);
+			for (int i = 0; pieces->data[i]; i++)
+				puts(pieces->data[i]);
+		}
+		puts(pieces->data[0]);
+	#endif
 	#ifdef T_PRINT_MAP
 		char **map = ft_strsplit("....\n##..\n.##.\n....", '\n');
 		print_map(map);
 	#endif
 /*			bullshit			*/
+
+
+
+	close(fd);
 	return (0);
 }
