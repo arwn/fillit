@@ -6,7 +6,7 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:57 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/19 11:39:41 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/19 11:43:28 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static int	die(int type)
 	exit (-1);
 }
 
-#include <stdio.h>
 int			main(int argc, char **argv)
 {
 	int			fd;
@@ -48,7 +47,7 @@ int			main(int argc, char **argv)
 	{
 		buf[21] = '\0';
 		tmp_tetromino = verify_tetrimino(buf);
-		if (!tmp_tetromino)
+		if (tmp_tetromino == 0)
 			die(Invalid);
 		if (tetrominos == 0)
 			tetrominos = list_new(tmp_tetromino);
