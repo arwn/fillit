@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:57 by zfaria            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2018/12/19 11:57:34 by zfaria           ###   ########.fr       */
+=======
+/*   Updated: 2018/12/19 11:43:28 by awindham         ###   ########.fr       */
+>>>>>>> c1d2e36e63856adff865fd0d51a84cf414df2d29
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +33,12 @@ static int	die(int type)
 	exit (-1);
 }
 
-#include <stdio.h>
 int			main(int argc, char **argv)
 {
 	int			fd;
 	char		buf[22];
-	t_etromino	*pieces;
-	char		**piece_map;
+	t_etromino	*tetrominos;
+	char		**tmp_tetromino;
 
 	if (argc != 2)
 		die(Argc);
@@ -43,17 +46,17 @@ int			main(int argc, char **argv)
 		die(Open);
 	if (read(fd, buf, 0) < 0)
 		die(Read);
-	pieces = 0;
+	tetrominos = 0;
 	while (read(fd, buf, 21))
 	{
 		buf[21] = '\0';
-		piece_map = verify_tetrimino(buf);
-		if (!piece_map)
+		tmp_tetromino = verify_tetrimino(buf);
+		if (tmp_tetromino == 0)
 			die(Invalid);
-		if (pieces == 0)
-			pieces = list_new(piece_map);
+		if (tetrominos == 0)
+			tetrominos = list_new(tmp_tetromino);
 		else
-			list_append(pieces, piece_map);
+			list_append(tetrominos, tmp_tetromino);
 	}
 
 	t_map *testmap = map_init(5);
@@ -62,13 +65,13 @@ int			main(int argc, char **argv)
 
 	/*			bullshit			*/
 	#ifdef T_PRINT_PCS
-		while (pieces)
+		while (tetrominos)
 		{
 			puts("new piece");
-			for (int i = 0; pieces->data[i]; i++)
-				puts(pieces->data[i]);
+			for (int i = 0; tetrominos->data[i]; i++)
+				puts(tetrominos->data[i]);
 			puts("");
-			pieces = pieces->next;
+			tetrominos = tetrominos->next;
 		}
 	#endif
 	#ifdef T_PRINT_MAP
