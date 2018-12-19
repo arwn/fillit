@@ -6,14 +6,28 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:45:38 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/11 13:14:47 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/19 10:15:59 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <ft_fillit.h>
 
-int	verify_piece(char **piece)
+char	**verify_is_valid_piece(char *str)
+{
+	char **map = NULL;
+
+	if (verify_block(str))
+	{
+		map = ft_strsplit(str, '\n');
+		if (verify_piece(map))
+			return (map);
+	}
+	ft_strdel(map);
+	return (NULL);
+}
+
+int		verify_piece(char **piece)
 {
 	int x;
 	int y;
@@ -38,7 +52,7 @@ int	verify_piece(char **piece)
 	return (valid > 5);
 }
 
-int verify_block(char *str)
+int		verify_block(char *str)
 {
 	int hash;
 	int dot;
@@ -60,7 +74,7 @@ int verify_block(char *str)
 	return (hash == 4 && dot == 12 && nl == 4);
 }
 
-int	verify_adjacent(char **piece, int x, int y)
+int		verify_adjacent(char **piece, int x, int y)
 {
 	int valid;
 

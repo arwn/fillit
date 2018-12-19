@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:57 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/18 19:08:27 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/19 10:18:28 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int	die(int type)
 		ft_putendl("can not open file");
 	if (type == Read)
 		ft_putendl("can not read file");
+	if (type == Invalid)
+		ft_putendl("error");
 	exit (-1);
 }
 
@@ -31,8 +33,9 @@ static int	die(int type)
 int			main(int argc, char **argv)
 {
 	int			fd;
-	char		buf[22];
+	char		buf[21];
 	t_etromino	*pieces;
+	char		**piece_map;
 
 	if (argc != 2)
 		die(Argc);
@@ -41,13 +44,18 @@ int			main(int argc, char **argv)
 	if (read(fd, buf, 0) < 0)
 		die(Read);
 	pieces = 0;
-	while (read(fd, buf, 21))
+	while (read(fd, buf, 20))
 	{
-		buf[21] = '\0';
+		buf[20] = '\0';
+		piece_map = verify_is_valid_piece(buf);
+		if (!piece_map)
+			die(Invalid);
 		if (pieces == 0)
-			pieces = list_new(buf);
+			pieces = list_new(piece_map);
 		else
-			list_append(pieces, buf);
+			list_append(pieces, piece_map);
+		if (read(fd, buf, 1) == 0)
+			break ;
 	}
 
 	/*			bullshit			*/

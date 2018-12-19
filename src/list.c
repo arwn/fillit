@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 16:28:31 by awindham          #+#    #+#             */
-/*   Updated: 2018/12/18 17:54:49 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/19 10:11:23 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <stdlib.h>
 
-t_etromino	*list_new(char *content)
+t_etromino	*list_new(char **content)
 {
 	t_etromino	*newl;
 
@@ -23,12 +23,12 @@ t_etromino	*list_new(char *content)
 	if (content == 0)
 		newl->data = 0;
 	else
-		 newl->data = ft_strsplit(content, '\n');
+		 newl->data = content;
 	newl->next = 0;
 	return (newl);
 }
 
-void	list_append(t_etromino *list, char *content)
+void	list_append(t_etromino *list, char **content)
 {
 	t_etromino	*append;
 

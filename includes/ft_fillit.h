@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fillit.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/18 19:08:03 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/19 10:12:04 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_FILLIT_H
 # define FT_FILLIT_H
 
-enum usage_types{Argc,Open,Read};
+enum usage_types{Argc,Open,Read,Invalid};
 
 typedef struct	s_point
 {
@@ -33,6 +33,7 @@ typedef struct	s_tetromino
 int				verify_piece(char **str);
 int				verify_block(char *str);
 int				verify_adjacent(char **piece, int x, int y);
+char			**verify_is_valid_piece(char *str);
 /*
 ** ****** print  ******
 */
@@ -41,7 +42,7 @@ int				print_map(char **map);
 /*
 ** ****** list ********
 */
-t_etromino	*list_new(char *content);
-void		list_append(t_etromino *list, char *content);
+t_etromino	*list_new(char **content);
+void		list_append(t_etromino *list, char **content);
 
 #endif
