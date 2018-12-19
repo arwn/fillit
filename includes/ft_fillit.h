@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fillit.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/12/19 12:12:34 by awindham         ###   ########.fr       */
-=======
-/*   Updated: 2018/12/19 11:57:54 by zfaria           ###   ########.fr       */
->>>>>>> 380bd6c22d71ffc13e56b617aec82ac2c59b1882
+/*   Updated: 2018/12/19 12:15:30 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +53,9 @@ void			list_append(t_etromino *list, char **content);
 /*
 ** ****** map ******
 */
-void			map_free(t_map *map);
-t_map			*map_init(int size);
+void			map_free(t_game_board *map);
+t_game_board	*map_init(int size);
 int				map_startsize(int pieces);
-int				map_print(t_map *map);
+int				map_print(t_game_board *map);
 
 #endif
