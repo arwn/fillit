@@ -6,7 +6,7 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/18 16:36:25 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/18 17:54:54 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ int				print_map(char **map);
 ** ****** list ********
 */
 t_etromino	*list_new(char *content);
+void		list_append(t_etromino *list, char *content);
 
 #endif
