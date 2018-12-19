@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fillit.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/19 11:29:49 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/19 12:12:34 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ typedef struct	s_t
 	struct s_t	*next;
 }				t_etromino;
 
-typedef struct	s_map
+typedef struct	s_game_board
 {
 	char		**map;
 	int			size;
-}				t_map;
+}				t_game_board;
 
 /*
 ** ****** verify ******
