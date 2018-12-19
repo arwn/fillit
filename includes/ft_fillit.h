@@ -6,7 +6,7 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/18 16:18:27 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/18 16:36:25 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct	s_point
 
 typedef struct	s_tetromino
 {
-	char				**piece;
+	char				**data;
 	struct s_tetromino	*next;
 }				t_etromino;
 
@@ -37,5 +37,10 @@ int				verify_adjacent(char **piece, int x, int y);
 ** ****** print  ******
 */
 int				print_map(char **map);
+
+/*
+** ****** list ********
+*/
+t_etromino	*list_new(char *content);
 
 #endif
