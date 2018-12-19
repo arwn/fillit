@@ -1,14 +1,14 @@
 CC=clang
-GFLAGS=-Werror -Wextra -Wall -Weverything -I libft/includes -I includes
+GFLAGS=-Werror -Wextra -Wall -I libft/includes -I includes
 LFLAGS=-L libft/ -lft
 NAME=fillit
-SRC=main.c verify.c print_map.c list.c
+SRC=main.c verify.c print_map.c list.c map.c
 _SRC=$(SRC:%=src/%)
 
 _OBJ=$(SRC:%.c=%.o)
 OBJ=$(_OBJ:%=obj/%)
 
-.PHONY: clean fclean all re norm norme
+.PHONY: clean fclean all re norm norme debug
 
 VPATH = src obj libft/includes includes src/str
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:57 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/19 11:43:28 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/19 12:11:07 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ int			main(int argc, char **argv)
 		else
 			list_append(tetrominos, tmp_tetromino);
 	}
+
+	t_map *testmap = map_init(5);
+	map_print(testmap);
+	map_free(testmap);
 
 	/*			bullshit			*/
 	#ifdef T_PRINT_PCS
