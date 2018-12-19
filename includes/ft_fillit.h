@@ -6,14 +6,14 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/18 16:08:18 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/18 16:18:27 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_FILLIT_H
 # define FT_FILLIT_H
 
-enum usage_types{Argc};
+enum usage_types{Argc,Open};
 
 typedef struct	s_point
 {
