@@ -6,7 +6,7 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:57 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/18 17:58:00 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/18 19:08:27 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 #include <ft_fillit.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdlib.h>
 
 static int	die(int type)
 {
 	if (type == Argc)
 		ft_putendl("usage: ./fillit filename");
 	if (type == Open)
-		ft_putendl("Can not open file");
-	return (-1);
+		ft_putendl("can not open file");
+	if (type == Read)
+		ft_putendl("can not read file");
+	exit (-1);
 }
 
 #include <stdio.h>
@@ -32,9 +35,11 @@ int			main(int argc, char **argv)
 	t_etromino	*pieces;
 
 	if (argc != 2)
-		return(die(Argc));
+		die(Argc);
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
-		return(die(Open));
+		die(Open);
+	if (read(fd, buf, 0) < 0)
+		die(Read);
 	pieces = 0;
 	while (read(fd, buf, 21))
 	{
