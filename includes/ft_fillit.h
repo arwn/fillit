@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/19 12:15:30 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/19 14:09:00 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@ enum			e_usage_types
 	Read,
 	Invalid
 };
-
-typedef struct	s_point
-{
-	int x;
-	int y;
-}				t_point;
 
 typedef struct	s_t
 {
