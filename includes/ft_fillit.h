@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fillit.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/19 14:09:00 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/20 12:19:37 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ enum			e_usage_types
 	Argc,
 	Open,
 	Read,
-	Invalid
+	Invalid_Tetromino
 };
 
 typedef struct	s_t
@@ -36,7 +36,8 @@ typedef struct	s_game_board
 /*
 ** ****** verify ******
 */
-char			**verify_tetrimino(char *str);
+int				verify_tetromino(char **str);
+int				verify_block(char *str);
 
 /*
 ** ****** list ********
