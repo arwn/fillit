@@ -37,3 +37,5 @@ norm:
 	norminette $(_SRC) includes/*
 
 norme: norm
+
+norman: norm
