@@ -6,7 +6,7 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:45:38 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/20 12:24:51 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/23 14:17:44 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,72 +15,54 @@
 #include <string.h>
 #include <stdlib.h>
 
-int	verify_block(char *str)
+int		verify_block(char *s)
 {
-	int hash;
-	int dot;
 	int nl;
-	int i;
+	int dot;
+	int hash;
 
-	hash = 0;
-	dot = 0;
 	nl = 0;
-	i = 0;
-	while (i < 20)
+	dot = 0;
+	hash = 0;
+	while (*s)
 	{
-		if (str[i] == '\n')
+		if (*s == '\n')
 			nl++;
-		if (str[i] == '.')
+		else if (*s == '.')
 			dot++;
-		if (str[i] == '#')
+		else if (*s == '#')
 			hash++;
+		else
+			return (0);
+		s++;
+	}
+	return (nl == 4 && dot == 12 && hash == 4);
+}
+
+int		verify_tetromino(char **buf)
+{
+	int connectey_bois;
+	int i;
+	int j;
+
+	connectey_bois = 0;
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 5)
+		{
+			if (0 < j && buf[i][j] == '#' && buf[i][j - 1] == '#')
+				connectey_bois++;
+			if (j < 3 && buf[i][j] == '#' && buf[i][j + 1] == '#')
+				connectey_bois++;
+			if (0 < i && buf[i][j] == '#' && buf[i - 1][j] == '#')
+				connectey_bois++;
+			if (i < 3 && buf[i][j] == '#' && buf[i + 1][j] == '#')
+				connectey_bois++;
+			j++;
+		}
 		i++;
 	}
-	return (hash == 4 && dot == 12 && nl == 4);
-}
-
-static int	verify_adjacent(char **piece, int x, int y)
-{
-	int valid;
-
-	valid = 0;
-	if (y > 0)
-		if (piece[y - 1][x] == '#')
-			valid++;
-	if (y < 3)
-		if (piece[y + 1][x] == '#')
-			valid++;
-	if (x > 0)
-		if (piece[y][x - 1] == '#')
-			valid++;
-	if (x < 3)
-		if (piece[y][x + 1] == '#')
-			valid++;
-	return (valid);
-}
-
-int	verify_tetromino(char **piece)
-{
-	int x;
-	int y;
-	int valid;
-
-	x = 0;
-	y = 0;
-	valid = 0;
-	while (y <= 3)
-	{
-		if (piece[y][x] == '#')
-		{
-			valid += verify_adjacent(piece, x, y);
-		}
-		if (x == 3)
-		{
-			x = -1;
-			y++;
-		}
-		x++;
-	}
-	return (valid > 5);
-	free(piece);
+	return (6 == connectey_bois || 8 == connectey_bois);
 }
