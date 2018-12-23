@@ -6,7 +6,7 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:57 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/20 12:20:20 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/23 13:24:30 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int			main(int argc, char **argv)
 {
 	int			fd;
 	char		buf[22];
+	int			bread;
 	t_etromino	*tetrominos;
 
 	if (argc != 2)
@@ -42,7 +43,7 @@ int			main(int argc, char **argv)
 	if (read(fd, buf, 0) < 0)
 		die(Read);
 	tetrominos = 0;
-	while (read(fd, buf, 21))
+	while ((bread = read(fd, buf, 21)) >= 20)
 	{
 		buf[21] = '\0';
 		if ( !verify_block(buf) || !verify_tetromino(ft_strsplit(buf, '\n')))

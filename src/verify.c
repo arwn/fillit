@@ -6,13 +6,14 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:45:38 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/20 12:18:15 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/20 12:24:51 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <ft_fillit.h>
 #include <string.h>
+#include <stdlib.h>
 
 int	verify_block(char *str)
 {
@@ -81,4 +82,5 @@ int	verify_tetromino(char **piece)
 		x++;
 	}
 	return (valid > 5);
+	free(piece);
 }
