@@ -6,7 +6,7 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:57 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/23 16:38:43 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/23 17:08:46 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,29 @@ int			main(int argc, char **argv)
 	while ((bread = read(fd, buf, 21)))
 	{
 		buf[bread] = '\0';
-
-			if (tetrominos == 0)
-				tetrominos = list_new(ft_strsplit(buf, '\n'));
-			else
-				list_append(tetrominos, ft_strsplit(buf, '\n'));
-		ft_strclr(buf);
+		if (verify_tetromino(ft_strsplit(buf, '\n')) == 0)
+			die(Invalid_Tetromino);
+		if (verify_block(buf) == 0)
+			die(Invalid_Tetromino);
+		if (tetrominos == 0)
+			tetrominos = list_new(ft_strsplit(buf, '\n'));
+		else
+			list_append(tetrominos, ft_strsplit(buf, '\n'));
 	}
-
 	list_iter(tetrominos, &trim_tetromino);
 
 	t_game_board *tmpmap = map_init(10);
-	place_tetromino(tetrominos->data, tmpmap, 0, 0, 'A');
-	place_tetromino(tetrominos->next->data, tmpmap, 5, 5, 'B');
-	place_tetromino(tetrominos->next->next->data, tmpmap, 5, 0, 'C');
-	map_print(tmpmap);
+	printf("%d", list_len(tetrominos));
 
 	/*			bullshit			*/
-	#define T_PRINT_PCS
+	#define T_PLACE_ON_MAP
+	#ifdef T_PLACE_ON_MAP
+		if (tetrominos->data)
+			place_tetromino(tetrominos->data, tmpmap, 0, 0, 'A');
+		if (tetrominos->next)
+			place_tetromino(tetrominos->next->data, tmpmap, 5, 5, 'B');
+		map_print(tmpmap);
+	#endif
 	#ifdef T_PRINT_PCS
 		while (tetrominos)
 		{

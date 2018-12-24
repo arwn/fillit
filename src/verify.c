@@ -6,7 +6,7 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:45:38 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/23 16:25:39 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/23 17:00:43 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include <stdio.h>
 int		verify_block(char *s)
 {
 	int nl;
@@ -36,7 +37,7 @@ int		verify_block(char *s)
 			return (0);
 		s++;
 	}
-	return (nl == 4 && dot == 12 && hash == 4);
+	return ((nl == 5 || nl == 4) && dot == 12 && hash == 4);
 }
 
 int		verify_tetromino(char **buf)

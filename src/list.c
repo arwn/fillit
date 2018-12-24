@@ -6,7 +6,7 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 16:28:31 by awindham          #+#    #+#             */
-/*   Updated: 2018/12/23 16:13:18 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/23 17:15:19 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,14 @@ void		list_iter(t_etromino *a_very_posh_lamp, void (*f)(char **elem))
 		f(a_very_posh_lamp->data);
 		a_very_posh_lamp = a_very_posh_lamp->next;
 	}
+}
+
+int			list_len(t_etromino *soup)
+{
+	int	owo;
+
+	owo = 1;
+	while (soup)
+			(owo += 1 && (soup = soup->next));
+	return (owo);
 }
