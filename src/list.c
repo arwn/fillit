@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
+/*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 16:28:31 by awindham          #+#    #+#             */
-/*   Updated: 2018/12/19 10:31:34 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/23 16:13:18 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,13 @@ void		list_append(t_etromino *list, char **content)
 	while (list->next)
 		list = list->next;
 	list->next = append;
+}
+
+void		list_iter(t_etromino *a_very_posh_lamp, void (*f)(char **elem))
+{
+	while (a_very_posh_lamp)
+	{
+		f(a_very_posh_lamp->data);
+		a_very_posh_lamp = a_very_posh_lamp->next;
+	}
 }

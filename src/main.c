@@ -6,7 +6,7 @@
 /*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:57 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/23 14:02:15 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/23 16:38:43 by awindham         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	die(int type)
 int			main(int argc, char **argv)
 {
 	int			fd;
-	char		buf[22];
+	char		buf[21];
 	int			bread;
 	t_etromino	*tetrominos;
 
@@ -46,18 +46,21 @@ int			main(int argc, char **argv)
 	while ((bread = read(fd, buf, 21)))
 	{
 		buf[bread] = '\0';
-		if (bread < 20)
-			die(Invalid_Tetromino);
-		if ( !verify_block(buf) || !verify_tetromino(ft_strsplit(buf, '\n')))
-			die(Invalid_Tetromino);
-		else
-		{
+
 			if (tetrominos == 0)
 				tetrominos = list_new(ft_strsplit(buf, '\n'));
 			else
 				list_append(tetrominos, ft_strsplit(buf, '\n'));
-		}
+		ft_strclr(buf);
 	}
+
+	list_iter(tetrominos, &trim_tetromino);
+
+	t_game_board *tmpmap = map_init(10);
+	place_tetromino(tetrominos->data, tmpmap, 0, 0, 'A');
+	place_tetromino(tetrominos->next->data, tmpmap, 5, 5, 'B');
+	place_tetromino(tetrominos->next->next->data, tmpmap, 5, 0, 'C');
+	map_print(tmpmap);
 
 	/*			bullshit			*/
 	#define T_PRINT_PCS

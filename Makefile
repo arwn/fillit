@@ -2,7 +2,7 @@ CC=clang
 GFLAGS=-Werror -Wextra -Wall -I libft/includes -I includes
 LFLAGS=-L libft/ -lft
 NAME=fillit
-SRC=main.c verify.c print_map.c list.c map.c
+SRC=main.c verify.c print_map.c list.c map.c place.c trim.c
 _SRC=$(SRC:%=src/%)
 
 _OBJ=$(SRC:%.c=%.o)
