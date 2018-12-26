@@ -6,13 +6,13 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 15:12:29 by awindham          #+#    #+#             */
-/*   Updated: 2018/12/26 10:12:42 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/26 11:47:28 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
 
-void	place_tetromin(char **p, t_game_board *board, t_point *t, char l)
+void	place_piece(char **p, t_game_board *board, t_point *t, char l)
 {
 	int i;
 	int j;

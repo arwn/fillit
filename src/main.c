@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:57 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/26 10:13:12 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/26 11:47:40 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ int			main(int argc, char **argv)
 	#define T_PLACE_ON_MAP
 	#ifdef T_PLACE_ON_MAP
 		if (tetrominos->data)
-			place_tetromin(tetrominos->data, tmpmap, point_create(0, 0), 'A');
+			place_piece(tetrominos->data, tmpmap, point_create(0, 0), 'A');
 		if (tetrominos->next)
-			place_tetromin(tetrominos->next->data, tmpmap, point_create(5, 5), 'B');
+			place_piece(tetrominos->next->data, tmpmap, point_create(5, 5), 'B');
 		map_print(tmpmap);
 	#endif
 	#ifdef T_PRINT_PCS

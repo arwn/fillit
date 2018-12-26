@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/26 10:13:43 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/26 11:47:36 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int				map_print(t_game_board *map);
 /*
 ** ***** place  ******
 */
-void			place_tetromin(char **p, t_game_board *b, t_point *t, char l);
+void			place_piece(char **p, t_game_board *b, t_point *t, char l);
 
 /*
 ** ***** trim *******
