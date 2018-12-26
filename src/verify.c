@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:45:38 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/23 17:00:43 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/26 10:15:01 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include <stdio.h>
 int		verify_block(char *s)
 {
 	int nl;

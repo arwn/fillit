@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fillit.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/23 17:08:06 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/26 10:13:43 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ enum			e_usage_types
 	Read,
 	Invalid_Tetromino
 };
+
+typedef struct	s_point
+{
+	int x;
+	int y;
+}				t_point;
 
 typedef struct	s_t
 {
@@ -55,16 +61,16 @@ t_game_board	*map_init(int size);
 int				map_startsize(int pieces);
 int				map_print(t_game_board *map);
 
-
 /*
 ** ***** place  ******
 */
-void			place_tetromino(char **p, t_game_board *b, int x, int y, char l);
+void			place_tetromin(char **p, t_game_board *b, t_point *t, char l);
 
 /*
 ** ***** trim *******
 */
 void			trim_tetromino(char **piece);
 
+t_point			*point_create(int x, int y);
 
 #endif

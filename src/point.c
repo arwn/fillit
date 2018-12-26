@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   place.c                                            :+:      :+:    :+:   */
+/*   point.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/23 15:12:29 by awindham          #+#    #+#             */
-/*   Updated: 2018/12/26 10:12:42 by zfaria           ###   ########.fr       */
+/*   Created: 2018/12/26 10:10:53 by zfaria            #+#    #+#             */
+/*   Updated: 2018/12/26 10:14:57 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
+#include <libft.h>
+#include <stdlib.h>
 
-void	place_tetromin(char **p, t_game_board *board, t_point *t, char l)
+t_point	*point_create(int x, int y)
 {
-	int i;
-	int j;
+	t_point *ret;
 
-	i = 0;
-	while (p[i])
-	{
-		j = 0;
-		while (p[i][j])
-		{
-			board->map[i + t->x][j + t->y] = p[i][j] == '#' ? l : '.';
-			j++;
-		}
-		i++;
-	}
+	ret = (t_point *)ft_memalloc(sizeof(t_point));
+	ret->x = x;
+	ret->y = y;
+	return (ret);
 }
