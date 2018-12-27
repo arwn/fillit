@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:56:43 by awindham          #+#    #+#             */
-/*   Updated: 2018/12/27 14:56:57 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 15:30:10 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int				recurse(t_etromino *list, t_game_board *board)
 				if (recurse(list->next, board))
 					return (1);
 				else
-					place_piece_force(list->piece, board, point_create(x, y), '.');
+					place_piece_reset(list->piece, board, point_create(x, y));
 			}
 			x++;
 		}

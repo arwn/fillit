@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 15:12:29 by awindham          #+#    #+#             */
-/*   Updated: 2018/12/27 15:06:19 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 15:31:44 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ int		place_piece(t_piece *p, t_game_board *board, t_point *t)
 	{
 		i = -1;
 		while (p->data[j][++i])
-			board->map[j + t->y][i + t->x] = p->data[j][i] == '#' ? p->id : '.';
+			if (p->data[j][i] == '#')
+				board->map[j + t->y][i + t->x] = p->id;
 	}
 	return (1);
 }
 
-void	place_piece_force(t_piece *p, t_game_board *board, t_point *t, char l)
+void	place_piece_reset(t_piece *p, t_game_board *board, t_point *t)
 {
 	int i;
 	int j;
@@ -41,7 +42,8 @@ void	place_piece_force(t_piece *p, t_game_board *board, t_point *t, char l)
 	{
 		i = -1;
 		while (p->data[j][++i])
-			board->map[j + t->y][i + t->x] = p->data[j][i] == '#' ? l : '.';
+			if (p->data[j][i] == '#')
+				board->map[j + t->y][i + t->x] = '.';
 	}
 }
 
@@ -56,7 +58,7 @@ int		place_test(t_piece *p, t_game_board *board, t_point *t)
 		i = -1;
 		while (p->data[j][++i])
 		{
-			if (board->map[t->y + j][t->x + i] != '.')
+			if (board->map[t->y + j][t->x + i] != '.' && p->data[j][i] != '.')
 				return (0);
 			if (t->x + i >= board->size || t->y + j >= board->size)
 				return (0);

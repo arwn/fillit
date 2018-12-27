@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/27 14:26:31 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 15:29:59 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void			map_clear(t_game_board *map);
 ** ***** place  ******
 */
 int				place_piece(t_piece *p, t_game_board *b, t_point *t);
-void			place_piece_force(t_piece *p, t_game_board *b, t_point *t, char l);
+void			place_piece_reset(t_piece *p, t_game_board *b, t_point *t);
 int				place_test(t_piece *p, t_game_board *b, t_point *t);
 
 int				recurse(t_etromino *list, t_game_board *board);
