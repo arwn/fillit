@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:57 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/27 11:16:43 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 14:25:32 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int			main(int argc, char **argv)
 	char		buf[21];
 	int			bread;
 	t_etromino	*tetrominos;
+	int			i;
 
 	if (argc != 2)
 		die(Argc);
@@ -43,6 +44,7 @@ int			main(int argc, char **argv)
 	if (read(fd, buf, 0) < 0)
 		die(Read);
 	tetrominos = 0;
+	i = 0;
 	while ((bread = read(fd, buf, 21)))
 	{
 		buf[bread] = '\0';
@@ -51,14 +53,13 @@ int			main(int argc, char **argv)
 		if (verify_block(buf) == 0)
 			die(Invalid_Tetromino);
 		if (tetrominos == 0)
-			tetrominos = list_new(ft_strsplit(buf, '\n'));
+			tetrominos = list_new(ft_strsplit(buf, '\n'), i + 'A');
 		else
-			list_append(tetrominos, ft_strsplit(buf, '\n'));
+			list_append(tetrominos, ft_strsplit(buf, '\n'), i + 'A');
+		i++;
 	}
 	list_iter(tetrominos, &trim_tetromino);
-	t_game_board *map = map_init(2);
-	map = recurse(tetrominos, map);
-	map_print(map);
+	map_print(solve(tetrominos));
 	close(fd);
 	return (0);
 }

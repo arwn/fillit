@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 15:12:29 by awindham          #+#    #+#             */
-/*   Updated: 2018/12/27 11:17:24 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 15:06:19 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,47 @@
 #include <libft.h>
 #include <stdlib.h>
 
-void	place_piece(char **p, t_game_board *board, t_point *t, char l)
+int		place_piece(t_piece *p, t_game_board *board, t_point *t)
+{
+	int i;
+	int j;
+
+	if (!place_test(p, board, t))
+		return (0);
+	j = -1;
+	while (p->data[++j])
+	{
+		i = -1;
+		while (p->data[j][++i])
+			board->map[j + t->y][i + t->x] = p->data[j][i] == '#' ? p->id : '.';
+	}
+	return (1);
+}
+
+void	place_piece_force(t_piece *p, t_game_board *board, t_point *t, char l)
 {
 	int i;
 	int j;
 
 	j = -1;
-	while (p[++j])
+	while (p->data[++j])
 	{
 		i = -1;
-		while (p[j][++i])
-			board->map[j + t->y][i + t->x] = p[j][i] == '#' ? l : '.';
+		while (p->data[j][++i])
+			board->map[j + t->y][i + t->x] = p->data[j][i] == '#' ? l : '.';
 	}
 }
 
-int		place_test(char **p, t_game_board *board, t_point *t)
+int		place_test(t_piece *p, t_game_board *board, t_point *t)
 {
 	int i;
 	int j;
 
 	j = -1;
-	while (p[++j])
+	while (p->data[++j])
 	{
 		i = -1;
-		while (p[j][++i])
+		while (p->data[j][++i])
 		{
 			if (board->map[t->y + j][t->x + i] != '.')
 				return (0);
@@ -46,29 +63,4 @@ int		place_test(char **p, t_game_board *board, t_point *t)
 		}
 	}
 	return (1);
-}
-
-t_point	*place_getpoint(char **p, t_game_board *board)
-{
-	int		x;
-	int		y;
-	t_point *point;
-
-	point = NULL;
-	x = 0;
-	y = 0;
-	while (y < board->size)
-	{
-		point = point_create(x, y);
-		if (place_test(p, board, point))
-			break ;
-		free (point);
-		point = NULL;
-		if (++x == board->size)
-		{
-			x = 0;
-			y++;
-		}
-	}
-	return (point);
 }

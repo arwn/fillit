@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/27 11:14:41 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 14:26:31 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,15 @@ typedef struct	s_point
 	int y;
 }				t_point;
 
-typedef struct	s_t
+typedef struct	s_piece
 {
 	char		**data;
+	char		id;
+}				t_piece;
+
+typedef struct	s_t
+{
+	t_piece		*piece;
 	struct s_t	*next;
 }				t_etromino;
 
@@ -48,9 +54,9 @@ int				verify_block(char *str);
 /*
 ** ****** list ********
 */
-t_etromino		*list_new(char **content);
-void			list_append(t_etromino *list, char **content);
-void			list_iter(t_etromino *lamp, void (*f)(char **e));
+t_etromino		*list_new(char **content, int num);
+void			list_append(t_etromino *list, char **content, int num);
+void			list_iter(t_etromino *lamp, void (*f)(t_piece *piece));
 int				list_len(t_etromino *soup);
 
 /*
@@ -65,16 +71,17 @@ void			map_clear(t_game_board *map);
 /*
 ** ***** place  ******
 */
-void			place_piece(char **p, t_game_board *b, t_point *t, char l);
-int				place_test(char **p, t_game_board *b, t_point *t);
-t_point			*place_getpoint(char **p, t_game_board *board);
+int				place_piece(t_piece *p, t_game_board *b, t_point *t);
+void			place_piece_force(t_piece *p, t_game_board *b, t_point *t, char l);
+int				place_test(t_piece *p, t_game_board *b, t_point *t);
 
-t_game_board	*recurse(t_etromino *list, t_game_board *board);
+int				recurse(t_etromino *list, t_game_board *board);
+t_game_board	*solve(t_etromino *list);
 
 /*
 ** ***** trim *******
 */
-void			trim_tetromino(char **piece);
+void			trim_tetromino(t_piece *p);
 
 t_point			*point_create(int x, int y);
 

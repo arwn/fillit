@@ -6,33 +6,49 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 17:56:43 by awindham          #+#    #+#             */
-/*   Updated: 2018/12/27 11:26:49 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 14:56:57 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 #include <ft_fillit.h>
 
-t_game_board	*recurse(t_etromino *list, t_game_board *board)
+int				recurse(t_etromino *list, t_game_board *board)
 {
-	int				i;
-	t_point			*point;
-	t_etromino		*begin;
+	int x;
+	int y;
 
-	begin = list;
-	i = 0;
-	while (list)
+	if (list == NULL)
+		return (1);
+	y = 0;
+	while (y < board->size)
 	{
-		point = place_getpoint(list->data, board);
-		if (!point)
+		x = 0;
+		while (x < board->size)
 		{
-			map_clear(board);
-			board->size++;
-			return (recurse(begin, board));
+			if (place_piece(list->piece, board, point_create(x, y)))
+			{
+				if (recurse(list->next, board))
+					return (1);
+				else
+					place_piece_force(list->piece, board, point_create(x, y), '.');
+			}
+			x++;
 		}
-		place_piece(list->data, board, point, i + 'A');
-		i++;
-		list = list->next;
+		y++;
 	}
-	return (board);
+	return (0);
+}
+
+t_game_board	*solve(t_etromino *list)
+{
+	t_game_board	*map;
+	
+	map = map_init(2);
+	while (!recurse(list, map))
+	{
+		map->size++;
+		map_clear(map);
+	}
+	return (map);
 }

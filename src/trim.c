@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   trim.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awindham <awindham@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 16:09:34 by awindham          #+#    #+#             */
-/*   Updated: 2018/12/23 16:11:53 by awindham         ###   ########.fr       */
+/*   Updated: 2018/12/27 14:27:12 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <libft.h>
+#include "ft_fillit.h"
 
 static	int		tetris_row_empty(char *str)
 {
@@ -60,25 +61,25 @@ static void		tetris_shift_col(char **piece, int l)
 	}
 }
 
-void			trim_tetromino(char **piece)
+void			trim_tetromino(t_piece *p)
 {
 	int i;
 	int max;
 
 	max = 4;
 	i = 0;
-	while (piece[i])
+	while (p->data[i])
 	{
-		if (tetris_row_empty(piece[i]))
-			tetris_shift_rows(piece, i);
+		if (tetris_row_empty(p->data[i]))
+			tetris_shift_rows(p->data, i);
 		else
 			i++;
 	}
 	i = 0;
-	while (piece[0][i])
+	while (p->data[0][i])
 	{
-		if (tetris_col_empty(piece, i))
-			tetris_shift_col(piece, i);
+		if (tetris_col_empty(p->data, i))
+			tetris_shift_col(p->data, i);
 		else
 			i++;
 	}
