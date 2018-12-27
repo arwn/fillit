@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:57 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/27 09:46:42 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 10:36:41 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,25 @@ int			main(int argc, char **argv)
 	}
 	list_iter(tetrominos, &trim_tetromino);
 
-	t_game_board *tmpmap = map_init(10);
+	t_game_board *tmpmap = map_init(1);
 	printf("%d", list_len(tetrominos));
 
 	/*			bullshit			*/
 	#define T_PLACE_ON_MAP
 	#ifdef T_PLACE_ON_MAP
-		printf("Valid? %d\n", place_test(tetrominos->data, tmpmap, point_create(0, 0)));
+		t_point *p = place_getpoint(tetrominos->data, tmpmap);
+		printf("%d:%d\n", p->x, p->y);
 		if (tetrominos->data)
-			place_piece(tetrominos->data, tmpmap, point_create(0, 0), 'A');
+			place_piece(tetrominos->data, tmpmap, p, 'A');
+		p = place_getpoint(tetrominos->data, tmpmap);
 		if (tetrominos->next)
 		{
-			place_piece(tetrominos->next->data, tmpmap, point_create(5, 5), 'B');
-			printf("Valid? %d\n", place_test(tetrominos->data, tmpmap, point_create(0, 0)));
+			place_piece(tetrominos->next->data, tmpmap, p, 'B');
+		}
+		p = place_getpoint(tetrominos->data, tmpmap);
+		if (tetrominos->next->next)
+		{
+			place_piece(tetrominos->next->next->data, tmpmap, p, 'C');
 		}
 		map_print(tmpmap);
 	#endif

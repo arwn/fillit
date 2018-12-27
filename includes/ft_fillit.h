@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/27 09:45:57 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 10:33:38 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int				map_print(t_game_board *map);
 */
 void			place_piece(char **p, t_game_board *b, t_point *t, char l);
 int				place_test(char **p, t_game_board *b, t_point *t);
+t_point			*place_getpoint(char **p, t_game_board *board);
 
 /*
 ** ***** trim *******

@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 15:12:29 by awindham          #+#    #+#             */
-/*   Updated: 2018/12/27 10:21:15 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 10:37:24 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		place_test(char **p, t_game_board *board, t_point *t)
 		{
 			if (board->map[t->x + i][t->y + j] != '.')
 				return (0);
-			if (t->x >= board->size || t->y >= board->size)
+			if (t->x + i >= board->size || t->y + j >= board->size)
 				return (0);
 		}
 	}
@@ -57,14 +57,18 @@ t_point	*place_getpoint(char **p, t_game_board *board)
 	point = NULL;
 	x = 0;
 	y = 0;
-	while (x < board->size)
+	while (y < board->size)
 	{
 		point = point_create(x, y);
 		if (place_test(p, board, point))
 			break ;
 		free (point);
 		point = NULL;
-
+		if (++x == board->size)
+		{
+			x = 0;
+			y++;
+		}
 	}
 	if (!point)
 	{
