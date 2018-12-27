@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:57 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/27 10:36:41 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 11:16:43 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,47 +56,9 @@ int			main(int argc, char **argv)
 			list_append(tetrominos, ft_strsplit(buf, '\n'));
 	}
 	list_iter(tetrominos, &trim_tetromino);
-
-	t_game_board *tmpmap = map_init(1);
-	printf("%d", list_len(tetrominos));
-
-	/*			bullshit			*/
-	#define T_PLACE_ON_MAP
-	#ifdef T_PLACE_ON_MAP
-		t_point *p = place_getpoint(tetrominos->data, tmpmap);
-		printf("%d:%d\n", p->x, p->y);
-		if (tetrominos->data)
-			place_piece(tetrominos->data, tmpmap, p, 'A');
-		p = place_getpoint(tetrominos->data, tmpmap);
-		if (tetrominos->next)
-		{
-			place_piece(tetrominos->next->data, tmpmap, p, 'B');
-		}
-		p = place_getpoint(tetrominos->data, tmpmap);
-		if (tetrominos->next->next)
-		{
-			place_piece(tetrominos->next->next->data, tmpmap, p, 'C');
-		}
-		map_print(tmpmap);
-	#endif
-	#ifdef T_PRINT_PCS
-		while (tetrominos)
-		{
-			puts("new piece");
-			for (int i = 0; tetrominos->data[i]; i++)
-				puts(tetrominos->data[i]);
-			puts("");
-			tetrominos = tetrominos->next;
-		}
-	#endif
-	#ifdef T_PRINT_MAP
-		char **map = ft_strsplit("....\n##..\n.##.\n....", '\n');
-		print_map(map);
-	#endif
-	/*			bullshit			*/
-
-
-
+	t_game_board *map = map_init(2);
+	map = recurse(tetrominos, map);
+	map_print(map);
 	close(fd);
 	return (0);
 }

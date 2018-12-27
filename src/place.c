@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 15:12:29 by awindham          #+#    #+#             */
-/*   Updated: 2018/12/27 10:37:24 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 11:17:24 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	place_piece(char **p, t_game_board *board, t_point *t, char l)
 	int i;
 	int j;
 
-	i = -1;
-	while (p[++i])
+	j = -1;
+	while (p[++j])
 	{
-		j = -1;
-		while (p[i][++j])
-			board->map[i + t->x][j + t->y] = p[i][j] == '#' ? l : '.';
+		i = -1;
+		while (p[j][++i])
+			board->map[j + t->y][i + t->x] = p[j][i] == '#' ? l : '.';
 	}
 }
 
@@ -33,13 +33,13 @@ int		place_test(char **p, t_game_board *board, t_point *t)
 	int i;
 	int j;
 
-	i = -1;
-	while (p[++i])
+	j = -1;
+	while (p[++j])
 	{
-		j = -1;
-		while (p[i][++j])
+		i = -1;
+		while (p[j][++i])
 		{
-			if (board->map[t->x + i][t->y + j] != '.')
+			if (board->map[t->y + j][t->x + i] != '.')
 				return (0);
 			if (t->x + i >= board->size || t->y + j >= board->size)
 				return (0);
@@ -69,11 +69,6 @@ t_point	*place_getpoint(char **p, t_game_board *board)
 			x = 0;
 			y++;
 		}
-	}
-	if (!point)
-	{
-		board->size++;
-		return (place_getpoint(p, board));
 	}
 	return (point);
 }

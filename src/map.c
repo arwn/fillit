@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 11:16:19 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/19 14:09:42 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 11:09:16 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,13 @@ int				map_print(t_game_board *map)
 		}
 		return (0);
 	}
+}
+
+void			map_clear(t_game_board *map)
+{
+	int i;
+
+	i = -1;
+	while (++i < map->size)
+		ft_memset(map->map[i], '.', map->size);
 }
