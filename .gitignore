@@ -3,3 +3,4 @@ libft/LICENSE
 obj/
 .vscode
 fillit
+.#*
