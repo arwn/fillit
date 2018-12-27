@@ -6,12 +6,13 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 15:12:29 by awindham          #+#    #+#             */
-/*   Updated: 2018/12/27 09:52:11 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 10:21:15 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fillit.h"
 #include <libft.h>
+#include <stdlib.h>
 
 void	place_piece(char **p, t_game_board *board, t_point *t, char l)
 {
@@ -61,7 +62,8 @@ t_point	*place_getpoint(char **p, t_game_board *board)
 		point = point_create(x, y);
 		if (place_test(p, board, point))
 			break ;
-		ft_memdel(&point);
+		free (point);
+		point = NULL;
 
 	}
 	if (!point)
