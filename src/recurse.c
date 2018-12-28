@@ -43,7 +43,7 @@ int				recurse(t_etromino *list, t_game_board *board)
 t_game_board	*solve(t_etromino *list)
 {
 	t_game_board	*map;
-	
+
 	map = map_init(2);
 	while (!recurse(list, map))
 	{
