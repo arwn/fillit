@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:50:40 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/27 15:29:59 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 15:56:38 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 enum			e_usage_types
 {
 	Argc,
-	Open,
-	Read,
-	Invalid_Tetromino
+	Error
 };
 
 typedef struct	s_point

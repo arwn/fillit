@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 13:43:57 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/27 14:25:32 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 16:07:57 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@ static int	die(int type)
 {
 	if (type == Argc)
 		ft_putendl("usage: ./fillit filename");
-	if (type == Open)
-		ft_putendl("can not open file");
-	if (type == Read)
-		ft_putendl("can not read file");
-	if (type == Invalid_Tetromino)
+	if (type == Error)
 		ft_putendl("error");
 	exit (-1);
 }
@@ -40,24 +36,26 @@ int			main(int argc, char **argv)
 	if (argc != 2)
 		die(Argc);
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
-		die(Open);
+		die(Error);
 	if (read(fd, buf, 0) < 0)
-		die(Read);
+		die(Error);
 	tetrominos = 0;
 	i = 0;
 	while ((bread = read(fd, buf, 21)))
 	{
 		buf[bread] = '\0';
 		if (verify_tetromino(ft_strsplit(buf, '\n')) == 0)
-			die(Invalid_Tetromino);
+			die(Error);
 		if (verify_block(buf) == 0)
-			die(Invalid_Tetromino);
+			die(Error);
 		if (tetrominos == 0)
 			tetrominos = list_new(ft_strsplit(buf, '\n'), i + 'A');
 		else
 			list_append(tetrominos, ft_strsplit(buf, '\n'), i + 'A');
 		i++;
 	}
+	if (!tetrominos)
+		die(Error);
 	list_iter(tetrominos, &trim_tetromino);
 	map_print(solve(tetrominos));
 	close(fd);

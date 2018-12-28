@@ -6,7 +6,7 @@
 /*   By: zfaria <zfaria@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/10 17:45:38 by zfaria            #+#    #+#             */
-/*   Updated: 2018/12/26 10:15:01 by zfaria           ###   ########.fr       */
+/*   Updated: 2018/12/27 16:08:01 by zfaria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int		verify_tetromino(char **buf)
 
 	connectey_bois = 0;
 	i = 0;
-	while (i < 4)
+	while (buf[i])
 	{
 		j = 0;
-		while (j < 5)
+		while (buf[i][j])
 		{
 			if (0 < j && buf[i][j] == '#' && buf[i][j - 1] == '#')
 				connectey_bois++;
@@ -64,5 +64,7 @@ int		verify_tetromino(char **buf)
 		}
 		i++;
 	}
+	if (i != 4 || j != 4)
+		return (0);
 	return (6 == connectey_bois || 8 == connectey_bois);
 }
